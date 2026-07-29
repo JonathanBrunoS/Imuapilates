@@ -17,7 +17,7 @@
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Configuração da Paleta de Cores (Extraída da Identidade Visual do Imua) -->
+    <!-- Configuração da Paleta de Cores -->
     <script>
         tailwind.config = {
             theme: {
@@ -65,6 +65,7 @@
                 </div>
                 <nav class="hidden md:flex space-x-8">
                     <a href="#diferenciais" class="text-imua-dark hover:text-imua-gold font-semibold transition-colors">Diferenciais</a>
+                    <a href="#espaco" class="text-imua-dark hover:text-imua-gold font-semibold transition-colors">O Espaço</a>
                     <a href="#planos" class="text-imua-dark hover:text-imua-gold font-semibold transition-colors">Planos</a>
                     <a href="#localizacao" class="text-imua-dark hover:text-imua-gold font-semibold transition-colors">Localização</a>
                 </nav>
@@ -147,8 +148,41 @@
         </div>
     </section>
 
+    <!-- Conheça o Espaço (Vídeo YouTube Shorts Responsivo) -->
+    <section id="espaco" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-imua-dark mb-4">Um ambiente pensado para o seu bem-estar</h2>
+                    <p class="text-lg text-gray-600 mb-8">Equipamentos premium em madeira, espaço moderno e uma atmosfera acolhedora. Tudo foi planejado para que você tenha a melhor experiência física e mental durante a sua prática.</p>
+                    <ul class="text-left space-y-4 text-gray-600 mb-8 inline-block md:block">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-imua-gold text-xl mr-3"></i> Infraestrutura completa e climatizada</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-imua-gold text-xl mr-3"></i> Aparelhos revisados e de alta performance</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-imua-gold text-xl mr-3"></i> Localizado dentro da Academia Original</li>
+                    </ul>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="inline-block mt-4 bg-imua-brown hover:bg-imua-gold text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg text-lg transform hover:scale-105">
+                        Agendar minha avaliação
+                    </a>
+                </div>
+                <div class="md:w-1/2 flex justify-center w-full">
+                    <!-- Wrapper que imita celular e protege o mobile -->
+                    <div class="relative w-full max-w-[320px] aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-gray-100 bg-gray-900">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/xiyQW_sevCs?autoplay=1&mute=1&loop=1&playlist=xiyQW_sevCs&controls=0&modestbranding=1" 
+                            title="Imua Pilates Studio" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Planos Section -->
-    <section id="planos" class="py-20 bg-white">
+    <section id="planos" class="py-20 bg-imua-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-imua-dark mb-4">Escolha o Plano Ideal</h2>
@@ -157,7 +191,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <!-- Bronze -->
-                <div class="border-2 border-imua-bronze/30 rounded-3xl p-8 bg-white relative">
+                <div class="border-2 border-imua-bronze/30 rounded-3xl p-8 bg-white relative hover:shadow-lg transition-shadow">
                     <div class="text-center mb-6">
                         <h3 class="text-2xl font-bold text-imua-bronze mb-2">IMUA BRONZE</h3>
                         <p class="text-gray-500 font-semibold uppercase text-sm">Pilates Clássico</p>
@@ -176,7 +210,7 @@
                 </div>
 
                 <!-- Silver (Destaque) -->
-                <div class="border-2 border-imua-silver rounded-3xl p-8 bg-white relative transform md:-translate-y-4 shadow-xl">
+                <div class="border-2 border-imua-silver rounded-3xl p-8 bg-white relative transform md:-translate-y-4 shadow-2xl">
                     <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-imua-silver text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                         Mais Escolhido
                     </div>
@@ -198,7 +232,7 @@
                 </div>
 
                 <!-- Gold -->
-                <div class="border-2 border-imua-gold/50 rounded-3xl p-8 bg-white relative">
+                <div class="border-2 border-imua-gold/50 rounded-3xl p-8 bg-white relative hover:shadow-lg transition-shadow">
                     <div class="text-center mb-6">
                         <h3 class="text-2xl font-bold text-imua-gold mb-2">IMUA GOLD</h3>
                         <p class="text-gray-500 font-semibold uppercase text-xs leading-tight">Pilates + Terapia <br> por Ondas de Choque</p>
@@ -220,13 +254,13 @@
     </section>
 
     <!-- Social Proof / Prova Social Google -->
-    <section class="py-16 bg-imua-light">
+    <section class="py-16 bg-white">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <div class="flex justify-center items-center space-x-2 mb-4 text-yellow-400 text-2xl">
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
             </div>
             <h2 class="text-2xl font-bold text-imua-dark mb-8">O que dizem nossos alunos</h2>
-            <div class="bg-white p-8 rounded-2xl shadow-sm relative">
+            <div class="bg-imua-light p-8 rounded-2xl shadow-sm relative border border-gray-100">
                 <i class="fas fa-quote-left text-4xl text-imua-gold/20 absolute top-4 left-4"></i>
                 <p class="text-lg text-gray-600 italic mb-4">"Os professores são fisioterapeutas, extremamente acolhedores e atenciosos. Lugar lindo, muito bem equipado e profissionais extremamente competentes."</p>
                 <p class="font-bold text-imua-brown">- Avaliação 5 Estrelas no Google</p>
@@ -250,7 +284,7 @@
                         <a href="https://www.instagram.com/imuapilates/" target="_blank" class="hover:text-white">@imuapilates</a>
                     </div>
                 </div>
-                <div class="w-full h-64 bg-gray-800 rounded-xl overflow-hidden">
+                <div class="w-full h-64 bg-gray-800 rounded-xl overflow-hidden shadow-inner">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1m2!1s0x94ce57a627a20c35%3A0xc3f10ef9e289e4c!2sR.%20Cel.%20Bento%20Bicudo%2C%201038%20-%20Piqueri%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2002912-000!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
