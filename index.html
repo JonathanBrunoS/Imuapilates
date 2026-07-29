@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imua Pilates Studio | Piqueri - SP</title>
+    <meta name="description" content="Pilates com fisioterapeutas no Piqueri. Mais força, mobilidade e alívio de dores. Aceitamos TotalPass e Wellhub. Dentro da Academia Original.">
+    
+    <!-- Google Fonts: Montserrat para um visual premium e moderno -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuração da Paleta de Cores (Extraída da Identidade Visual do Imua) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        imua: {
+                            brown: '#6B4A34', /* Marrom da Logo */
+                            gold: '#C5A059', /* Dourado dos planos e detalhes */
+                            light: '#FDFBF7', /* Fundo off-white texturizado */
+                            dark: '#2C2520', /* Texto escuro para contraste */
+                            bronze: '#A67B5B', /* Detalhes do plano Bronze */
+                            silver: '#A8A9AD' /* Detalhes do plano Silver */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos adicionais para suavidade e pequenos ajustes que o Tailwind não cobre via CDN */
+        html { scroll-behavior: smooth; }
+        .glass-header {
+            background: rgba(253, 251, 247, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .hero-bg {
+            /* SUBSTITUA O LINK ABAIXO PELA IMAGEM DE FUNDO DO ESTÚDIO */
+            background-image: linear-gradient(rgba(44, 37, 32, 0.7), rgba(44, 37, 32, 0.7)), url('https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-imua-light text-imua-dark font-sans antialiased">
+
+    <!-- Header / Navbar -->
+    <header class="fixed w-full top-0 z-50 glass-header shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <!-- INSERIR LINK DA LOGO AQUI -->
+                    <img class="h-12 w-auto" src="LINK_DA_SUA_LOGO.png" alt="Imua Pilates Studio">
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#diferenciais" class="text-imua-dark hover:text-imua-gold font-semibold transition-colors">Diferenciais</a>
+                    <a href="#planos" class="text-imua-dark hover:text-imua-gold font-semibold transition-colors">Planos</a>
+                    <a href="#localizacao" class="text-imua-dark hover:text-imua-gold font-semibold transition-colors">Localização</a>
+                </nav>
+                <div class="hidden md:flex items-center">
+                    <a href="https://wa.me/5511999999999" target="_blank" class="bg-imua-brown hover:bg-imua-gold text-white px-6 py-2 rounded-full font-bold transition-all shadow-lg transform hover:scale-105">
+                        <i class="fab fa-whatsapp mr-2"></i> Agendar Aula
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-screen flex items-center mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="md:w-2/3">
+                <span class="text-imua-gold font-bold tracking-wider uppercase text-sm mb-4 block">Dentro da Academia Original</span>
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+                    Movimento com propósito. <br><span class="text-imua-gold">Cuidado com você.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">
+                    Recupere sua mobilidade, alivie dores e ganhe força com um atendimento exclusivo realizado por fisioterapeutas no coração do Piqueri.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="https://wa.me/5511999999999" target="_blank" class="bg-imua-gold hover:bg-white hover:text-imua-brown text-white text-center px-8 py-4 rounded-full font-bold transition-all shadow-lg text-lg">
+                        Descubra seu Plano Ideal (Quiz)
+                    </a>
+                    <a href="#planos" class="border-2 border-white text-white hover:bg-white hover:text-imua-dark text-center px-8 py-4 rounded-full font-bold transition-all text-lg">
+                        Ver Planos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parceiros / Benefícios -->
+    <section class="py-10 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-6">Aceitamos Benefícios Corporativos</p>
+            <div class="flex justify-center items-center gap-12 opacity-80">
+                <!-- INSERIR LOGOS TOTALPASS E WELLHUB REAIS SE PREFERIR -->
+                <h3 class="text-2xl font-bold text-imua-dark">TOTALPASS <span class="text-sm font-normal text-gray-500">(TP5+)</span></h3>
+                <h3 class="text-2xl font-bold text-imua-dark text-pink-600">wellhub</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section id="diferenciais" class="py-20 bg-imua-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-imua-dark mb-4">Técnica, cuidado e exclusividade</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Cada aula é planejada de acordo com os seus objetivos e necessidades para uma evolução com segurança.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 bg-imua-gold/10 text-imua-gold rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Fisioterapeutas</h3>
+                    <p class="text-gray-600">Profissionais altamente capacitados para garantir uma prática segura, focada em reabilitação e fortalecimento.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 bg-imua-gold/10 text-imua-gold rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mais Mobilidade</h3>
+                    <p class="text-gray-600">Recupere a amplitude dos seus movimentos, melhore sua postura e viva o dia a dia com muito mais disposição.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm text-center hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 bg-imua-gold/10 text-imua-gold rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Alívio de Dores</h3>
+                    <p class="text-gray-600">Tratamento eficaz para dores crônicas, tensões musculares e recuperação de lesões através do movimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos Section -->
+    <section id="planos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-imua-dark mb-4">Escolha o Plano Ideal</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Três planos, o mesmo compromisso: cuidar de você todos os dias.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Bronze -->
+                <div class="border-2 border-imua-bronze/30 rounded-3xl p-8 bg-white relative">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-imua-bronze mb-2">IMUA BRONZE</h3>
+                        <p class="text-gray-500 font-semibold uppercase text-sm">Pilates Clássico</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-600 text-sm">
+                        <li><i class="fas fa-check text-imua-bronze mr-2"></i> Mais força e disposição</li>
+                        <li><i class="fas fa-check text-imua-bronze mr-2"></i> Melhora da postura</li>
+                        <li><i class="fas fa-check text-imua-bronze mr-2"></i> Qualidade de vida</li>
+                    </ul>
+                    <div class="bg-gray-50 p-4 rounded-xl text-center mb-6">
+                        <p class="text-xs text-gray-500 mb-1">A partir de</p>
+                        <p class="text-3xl font-bold text-imua-dark">R$ 209<span class="text-lg">,90</span><span class="text-sm text-gray-500 font-normal">/mês</span></p>
+                        <p class="text-xs text-gray-500 mt-1">Plano Semestral (1x semana)</p>
+                    </div>
+                    <a href="https://wa.me/5511999999999" class="block w-full text-center bg-imua-bronze text-white py-3 rounded-full font-bold hover:bg-opacity-90 transition">Escolher Bronze</a>
+                </div>
+
+                <!-- Silver (Destaque) -->
+                <div class="border-2 border-imua-silver rounded-3xl p-8 bg-white relative transform md:-translate-y-4 shadow-xl">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-imua-silver text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                        Mais Escolhido
+                    </div>
+                    <div class="text-center mb-6 mt-4">
+                        <h3 class="text-2xl font-bold text-gray-700 mb-2">IMUA SILVER</h3>
+                        <p class="text-gray-500 font-semibold uppercase text-xs leading-tight">Pilates + Fotomodulação <br> + Liberação Miofascial</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-600 text-sm">
+                        <li><i class="fas fa-check text-imua-silver mr-2"></i> Recuperação muscular</li>
+                        <li><i class="fas fa-check text-imua-silver mr-2"></i> Alívio de inflamações</li>
+                        <li><i class="fas fa-check text-imua-silver mr-2"></i> Bem-estar completo</li>
+                    </ul>
+                    <div class="bg-gray-50 p-4 rounded-xl text-center mb-6">
+                        <p class="text-xs text-gray-500 mb-1">A partir de</p>
+                        <p class="text-3xl font-bold text-imua-dark">R$ 539<span class="text-lg">,90</span><span class="text-sm text-gray-500 font-normal">/mês</span></p>
+                        <p class="text-xs text-gray-500 mt-1">Plano Semestral (2x semana)</p>
+                    </div>
+                    <a href="https://wa.me/5511999999999" class="block w-full text-center bg-gray-700 text-white py-3 rounded-full font-bold hover:bg-gray-800 transition">Escolher Silver</a>
+                </div>
+
+                <!-- Gold -->
+                <div class="border-2 border-imua-gold/50 rounded-3xl p-8 bg-white relative">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-imua-gold mb-2">IMUA GOLD</h3>
+                        <p class="text-gray-500 font-semibold uppercase text-xs leading-tight">Pilates + Terapia <br> por Ondas de Choque</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-600 text-sm">
+                        <li><i class="fas fa-check text-imua-gold mr-2"></i> Recuperação acelerada</li>
+                        <li><i class="fas fa-check text-imua-gold mr-2"></i> Redução de dores crônicas</li>
+                        <li><i class="fas fa-check text-imua-gold mr-2"></i> Resultados premium</li>
+                    </ul>
+                    <div class="bg-gray-50 p-4 rounded-xl text-center mb-6">
+                        <p class="text-xs text-gray-500 mb-1">A partir de</p>
+                        <p class="text-3xl font-bold text-imua-dark">R$ 1.239<span class="text-lg">,90</span><span class="text-sm text-gray-500 font-normal">/mês</span></p>
+                        <p class="text-xs text-gray-500 mt-1">Plano Semestral (2x semana)</p>
+                    </div>
+                    <a href="https://wa.me/5511999999999" class="block w-full text-center bg-imua-gold text-white py-3 rounded-full font-bold hover:bg-opacity-90 transition">Escolher Gold</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Prova Social Google -->
+    <section class="py-16 bg-imua-light">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="flex justify-center items-center space-x-2 mb-4 text-yellow-400 text-2xl">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-imua-dark mb-8">O que dizem nossos alunos</h2>
+            <div class="bg-white p-8 rounded-2xl shadow-sm relative">
+                <i class="fas fa-quote-left text-4xl text-imua-gold/20 absolute top-4 left-4"></i>
+                <p class="text-lg text-gray-600 italic mb-4">"Os professores são fisioterapeutas, extremamente acolhedores e atenciosos. Lugar lindo, muito bem equipado e profissionais extremamente competentes."</p>
+                <p class="font-bold text-imua-brown">- Avaliação 5 Estrelas no Google</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé e Localização -->
+    <footer id="localizacao" class="bg-imua-dark text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-imua-gold mb-4">Imua Pilates Studio</h3>
+                    <p class="text-gray-300 mb-6 max-w-md">Técnica, cuidado e exclusividade. Descubra o plano ideal para o seu momento e seus objetivos com a nossa equipe de fisioterapeutas.</p>
+                    <div class="flex items-center space-x-4 mb-4 text-gray-300">
+                        <i class="fas fa-map-marker-alt text-imua-gold text-xl w-6"></i>
+                        <span>Rua Coronel Bento Bicudo, 1038<br>Piqueri, São Paulo - SP<br><span class="text-sm text-imua-gold">Dentro da Academia Original</span></span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-gray-300">
+                        <i class="fab fa-instagram text-imua-gold text-xl w-6"></i>
+                        <a href="https://www.instagram.com/imuapilates/" target="_blank" class="hover:text-white">@imuapilates</a>
+                    </div>
+                </div>
+                <div class="w-full h-64 bg-gray-800 rounded-xl overflow-hidden">
+                    <!-- EMBED DO MAPA DO GOOGLE AQUI -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1m2!1s0x94ce57a627a20c35%3A0xc3f10ef9e289e4c!2sR.%20Cel.%20Bento%20Bicudo%2C%201038%20-%20Piqueri%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2002912-000!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 Imua Pilates Studio. Todos os direitos reservados.</p>
+                <p class="mt-2 md:mt-0">Desenvolvido por Rocket Agência</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:bg-green-600 hover:scale-110 transition-transform z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
