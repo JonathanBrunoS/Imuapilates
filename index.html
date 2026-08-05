@@ -45,10 +45,13 @@
     <!-- FontAwesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Swiper CSS (Carrossel) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Configuração da Paleta e Animações -->
+    <!-- Configuração da Paleta -->
     <script>
         tailwind.config = {
             theme: {
@@ -105,16 +108,22 @@
 
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
+
+        /* Ajustes do Carrossel Swiper */
+        .swiper-button-next:after, .swiper-button-prev:after { font-size: 1.5rem !important; font-weight: bold; }
+        .swiper-pagination-bullet-active { background-color: #C5A059 !important; }
     </style>
 </head>
 <body class="bg-imua-light text-imua-dark font-sans antialiased">
 
-    <!-- HERO SECTION (Sem Header, Foco Total na Conversão) -->
+    <!-- HERO SECTION -->
     <section class="relative min-h-[100dvh] flex flex-col justify-between items-center pt-10 pb-4">
-        <!-- Nova Background Imagem da Sala -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://i.ibb.co/tpyq9T84/image.png" class="w-full h-full object-cover object-center" alt="Estúdio Imua Pilates">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/85"></div>
+        <!-- Background Imagem da Sala -->
+        <div class="absolute inset-0 z-0 bg-black">
+            <!-- Caso a imagem do ImgBB falhe, o fundo será preto sólido para não ficar cinza feio -->
+            <img src="https://i.ibb.co/tpyq9T84/image.png" class="w-full h-full object-cover object-center opacity-70" alt="Estúdio Imua Pilates">
+            <!-- Overlay escuro e elegante para dar contraste -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#2C2520] via-black/40 to-black/60"></div>
         </div>
 
         <!-- Conteúdo Centralizado Compacto -->
@@ -133,8 +142,8 @@
                 Atendimento individualizado com <span class="text-imua-gold font-bold">fisioterapeutas especializados</span>.
             </p>
             
-            <!-- Status de Horário Dinâmico (Removido do topo e colocado sutilmente aqui) -->
-            <div class="flex items-center gap-2 bg-black/40 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/10 mb-6 shadow-sm inline-flex">
+            <!-- Status de Horário Dinâmico -->
+            <div class="flex items-center gap-2 bg-black/50 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/10 mb-6 shadow-sm inline-flex">
                 <span id="status-dot" class="w-2 h-2 rounded-full bg-gray-400"></span>
                 <span id="status-text" class="text-white font-bold tracking-widest uppercase text-[10px]">Verificando...</span>
             </div>
@@ -255,7 +264,7 @@
         </div>
     </section>
 
-    <!-- Conheça o Espaço com Foto da Recepção -->
+    <!-- Conheça o Espaço com Carrossel Swiper -->
     <section id="espaco" class="py-24 bg-imua-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center gap-16">
@@ -268,10 +277,24 @@
                         <li class="flex items-center font-bold bg-white p-4 rounded-2xl shadow-sm border border-gray-50"><i class="fas fa-map-marker-alt text-imua-gold text-2xl mr-4 w-8 text-center"></i> Localizado na Academia Original</li>
                     </ul>
                 </div>
-                <div class="md:w-1/2 flex justify-center w-full">
-                    <!-- Foto da Entrada (Nova) com design de quadro -->
-                    <div class="relative w-full max-w-[400px] aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-[8px] border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                        <img src="https://i.ibb.co/0jYNhTdW/image.png" alt="Recepção Imua Pilates" class="w-full h-full object-cover">
+                
+                <div class="md:w-1/2 w-full">
+                    <!-- Swiper Carousel -->
+                    <div class="swiper mySwiper w-full h-[350px] md:h-[450px] rounded-[2.5rem] shadow-2xl border-[8px] border-white">
+                        <div class="swiper-wrapper">
+                            <!-- Foto 1 (Recepção/Logo) -->
+                            <div class="swiper-slide"><img src="https://i.ibb.co/0jYNhTdW/image.png" class="w-full h-full object-cover" alt="Recepção Imua"></div>
+                            <!-- Foto 2 (Sala e Aparelhos) -->
+                            <div class="swiper-slide"><img src="https://i.ibb.co/ZzQx07pq/image.png" class="w-full h-full object-cover" alt="Sala de Pilates"></div>
+                            <!-- Foto 3 (Detalhes) -->
+                            <div class="swiper-slide"><img src="https://i.ibb.co/393BqPbm/image.png" class="w-full h-full object-cover" alt="Aparelhos Pilates"></div>
+                            <!-- Foto 4 (Equipamento Focado) -->
+                            <div class="swiper-slide"><img src="https://i.ibb.co/ycdC176t/image.png" class="w-full h-full object-cover" alt="Equipamentos Premium"></div>
+                        </div>
+                        <!-- Setinhas e Bolinhas de Navegação -->
+                        <div class="swiper-button-next !text-imua-gold drop-shadow-md"></div>
+                        <div class="swiper-button-prev !text-imua-gold drop-shadow-md"></div>
+                        <div class="swiper-pagination"></div>
                     </div>
                 </div>
             </div>
@@ -579,8 +602,31 @@
         </div>
     </div>
 
-    <!-- Script de Horário e Quiz -->
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Scripts da Página (Horário, Quiz e Carrossel) -->
     <script>
+        // INICIALIZAÇÃO DO CARROSSEL SWIPER
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiper = new Swiper(".mySwiper", {
+                loop: true,
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+        });
+
+        // HORÁRIO DINÂMICO
         function checkOpenStatus() {
             const now = new Date();
             const day = now.getDay(); 
@@ -607,6 +653,7 @@
         }
         document.addEventListener('DOMContentLoaded', checkOpenStatus);
 
+        // SCRIPTS DO QUIZ
         let respostas = { obj: '', rotina: '', beneficio: '' };
 
         function openQuiz() {
