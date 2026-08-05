@@ -17,7 +17,7 @@
     <meta property="og:image" content="https://i.ibb.co/Y7n7Ncxf/Design-sem-nome.png">
     <meta property="og:type" content="website">
 
-    <!-- Schema Markup para Negócios Locais (Ajuda no Google Maps/SEO) -->
+    <!-- Schema Markup para Negócios Locais -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -87,35 +87,14 @@
     <style>
         html { scroll-behavior: smooth; }
         
-        .glass-header {
-            background: rgba(248, 246, 240, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
-        }
+        /* Navbar Invisível no topo, fica sólida ao rolar */
+        .header-transparent { background: transparent; transition: all 0.3s ease; }
+        .header-solid { background: rgba(248, 246, 240, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
+        .header-text-white { color: white !important; }
+        .header-text-dark { color: #2C2520 !important; }
 
-        .hero-bg {
-            background-color: #F8F6F0; 
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-glow {
-            position: absolute;
-            top: 20%; left: -10%;
-            width: 50vw; height: 50vw;
-            background: radial-gradient(circle, rgba(197,160,89,0.15) 0%, rgba(248,246,240,0) 70%);
-            border-radius: 50%; pointer-events: none; z-index: 0;
-        }
-
-        .hero-content { position: relative; z-index: 1; }
-        
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        @keyframes float-slow { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
-        @keyframes float-medium { 0% { transform: translateY(0px); } 50% { transform: translateY(10px); } 100% { transform: translateY(0px); } }
-        .anim-float-1 { animation: float-slow 6s ease-in-out infinite; }
-        .anim-float-2 { animation: float-medium 5s ease-in-out infinite; }
 
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); transform: scale(1.0); }
@@ -136,87 +115,85 @@
 </head>
 <body class="bg-imua-light text-imua-dark font-sans antialiased">
 
-    <!-- Header / Navbar -->
-    <header class="fixed w-full top-0 z-50 glass-header transition-all duration-300">
+    <!-- Header / Navbar Dinâmica -->
+    <header id="navbar" class="fixed w-full top-0 z-50 header-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
                 <div class="flex-shrink-0 flex items-center">
-                    <!-- Logo Transparente Final -->
-                    <img class="h-16 w-auto object-contain" src="https://i.ibb.co/Y7n7Ncxf/Design-sem-nome.png" alt="Imua Pilates Studio">
+                    <!-- O logo no menu só aparece ao rolar a página para não brigar com o logo gigante do centro -->
+                    <img id="nav-logo" class="h-12 w-auto object-contain opacity-0 transition-opacity duration-300" src="https://i.ibb.co/Y7n7Ncxf/Design-sem-nome.png" alt="Imua Pilates">
                 </div>
                 <nav class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
-                    <a href="#jornada" class="text-gray-600 hover:text-imua-gold font-bold transition-colors">Como Funciona</a>
-                    <a href="#diferenciais" class="text-gray-600 hover:text-imua-gold font-bold transition-colors">Diferenciais</a>
-                    <a href="#espaco" class="text-gray-600 hover:text-imua-gold font-bold transition-colors">O Espaço</a>
-                    <a href="#planos" class="text-gray-600 hover:text-imua-gold font-bold transition-colors">Planos</a>
+                    <a href="#jornada" id="nav-link-1" class="header-text-white hover:text-imua-gold font-bold transition-colors">Como Funciona</a>
+                    <a href="#diferenciais" id="nav-link-2" class="header-text-white hover:text-imua-gold font-bold transition-colors">Diferenciais</a>
+                    <a href="#espaco" id="nav-link-3" class="header-text-white hover:text-imua-gold font-bold transition-colors">O Espaço</a>
+                    <a href="#planos" id="nav-link-4" class="header-text-white hover:text-imua-gold font-bold transition-colors">Planos</a>
                 </nav>
-                <div class="hidden md:flex items-center">
-                    <button onclick="openQuiz()" class="bg-imua-gold hover:bg-imua-brown text-white px-8 py-3 rounded-full font-bold transition-all shadow-md transform hover:-translate-y-1 flex items-center gap-2">
-                        <i class="fas fa-clipboard-list"></i> Iniciar Avaliação
-                    </button>
+                <div class="hidden md:flex items-center gap-3 bg-black/30 backdrop-blur-md px-4 py-2 rounded-full border border-white/10" id="status-container">
+                    <span id="status-dot" class="w-2 h-2 rounded-full bg-gray-400"></span>
+                    <span id="status-text" class="text-white font-bold tracking-widest uppercase text-xs">Verificando...</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero-bg min-h-screen flex items-center pt-24 pb-12">
-        <div class="hero-glow"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-content w-full">
-            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                
-                <div class="w-full lg:w-1/2 text-center lg:text-left pt-10 lg:pt-0">
-                    <div class="inline-flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full mb-8 shadow-sm">
-                        <span id="status-dot" class="w-2 h-2 rounded-full bg-gray-400"></span>
-                        <span id="status-text" class="text-imua-dark font-bold tracking-widest uppercase text-xs">Verificando horário...</span>
-                    </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-imua-dark leading-[1.1] mb-6 tracking-tight">
-                        Seu corpo foi <br class="hidden lg:block"> feito para o <span class="text-imua-gold">movimento livre.</span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-500 mb-10 font-medium leading-relaxed max-w-lg mx-auto lg:mx-0">
-                        Recupere sua mobilidade e viva sem dores com um acompanhamento premium feito exclusivamente por fisioterapeutas.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button onclick="openQuiz()" class="bg-imua-dark hover:bg-black text-white text-center px-8 py-4 rounded-full font-bold transition-all shadow-xl text-lg transform hover:-translate-y-1 flex items-center justify-center gap-3">
-                            <i class="fas fa-bolt text-imua-gold"></i> Diagnóstico Rápido
-                        </button>
-                        <a href="#planos" class="border-2 border-gray-200 text-imua-dark hover:border-imua-gold hover:text-imua-gold text-center px-8 py-4 rounded-full font-bold transition-all text-lg bg-white">
-                            Ver Planos
-                        </a>
-                    </div>
-                </div>
+    <!-- NOVO HERO SECTION (Capa Centralizada Estilo Facebook) -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center pt-20 pb-8">
+        <!-- Background Imagem da Sala -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://i.ibb.co/ZzQx07pq/image.png" class="w-full h-full object-cover object-center" alt="Estúdio Imua Pilates">
+            <!-- Overlay escuro para dar contraste ao texto -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
+        </div>
 
-                <div class="w-full lg:w-1/2 relative h-[500px] sm:h-[600px] mt-8 lg:mt-0">
-                    <div class="absolute inset-0 grid grid-cols-2 gap-4 sm:gap-6 p-4">
-                        <div class="anim-float-1 rounded-[2rem] overflow-hidden shadow-2xl h-[280px] sm:h-[340px] transform translate-y-8">
-                            <img src="https://i.ibb.co/ZzQx07pq/image.png" alt="Equipamentos Premium" class="w-full h-full object-cover">
-                        </div>
-                        <div class="anim-float-2 rounded-[2rem] overflow-hidden shadow-2xl h-[240px] sm:h-[280px]">
-                            <img src="https://i.ibb.co/393BqPbm/image.png" alt="Aparelhos de Pilates" class="w-full h-full object-cover">
-                        </div>
-                        <div class="anim-float-2 rounded-[2rem] overflow-hidden shadow-2xl h-[220px] sm:h-[260px] transform -translate-y-4">
-                            <img src="https://i.ibb.co/0jYNhTdW/image.png" alt="Detalhe Estúdio" class="w-full h-full object-cover">
-                        </div>
-                        <div class="anim-float-1 rounded-[2rem] overflow-hidden shadow-2xl h-[260px] sm:h-[320px] transform -translate-y-12">
-                            <img src="https://i.ibb.co/ycdC176t/image.png" alt="Espaço Imua" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-2xl flex items-center gap-3 z-10 border border-white">
-                        <div class="w-12 h-12 bg-imua-gold text-white rounded-full flex items-center justify-center text-xl">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div>
-                            <p class="font-black text-imua-dark leading-none">5.0 / 5.0</p>
-                            <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">No Google</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Conteúdo Centralizado -->
+        <div class="relative z-10 flex flex-col items-center text-center px-4 w-full max-w-4xl mx-auto mt-12">
+            
+            <!-- Logo Gigante -->
+            <img src="https://i.ibb.co/Y7n7Ncxf/Design-sem-nome.png" alt="Imua Pilates Studio" class="w-56 md:w-72 lg:w-80 mb-8 drop-shadow-2xl">
+            
+            <!-- Título Principal -->
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.2] mb-6 tracking-tight drop-shadow-lg">
+                Pilates que transforma seu corpo e melhora sua qualidade de vida.
+            </h1>
+            
+            <!-- Subtítulo -->
+            <p class="text-lg md:text-2xl text-gray-200 mb-10 font-medium max-w-2xl drop-shadow-md">
+                Atendimento individualizado com <span class="text-imua-gold font-bold">fisioterapeutas especializados</span>.
+            </p>
+            
+            <!-- Checkmarks Horizontais -->
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 justify-center mb-12 text-white font-bold text-lg md:text-xl">
+                <span class="flex items-center gap-3 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"><i class="fas fa-check text-imua-gold"></i> Menos dores</span>
+                <span class="flex items-center gap-3 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"><i class="fas fa-check text-imua-gold"></i> Mais força</span>
+                <span class="flex items-center gap-3 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"><i class="fas fa-check text-imua-gold"></i> Mais mobilidade</span>
+            </div>
+            
+            <!-- Botões Principais -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+                <!-- Botão Next Fit -->
+                <a href="#" class="bg-imua-gold hover:bg-yellow-500 text-imua-dark px-8 md:px-12 py-4 rounded-full font-black transition-all shadow-[0_0_30px_rgba(197,160,89,0.5)] transform hover:-translate-y-1 w-full sm:w-auto text-lg md:text-xl">
+                    Agendar uma aula
+                    <span class="block text-xs md:text-sm font-bold uppercase mt-1 opacity-90 tracking-wider">Experimental por R$ 89,90</span>
+                </a>
+                
+                <!-- Botão Avaliação Gratuita / Gympass -->
+                <button onclick="openQuiz()" class="bg-transparent border-2 border-white hover:bg-white hover:text-imua-dark text-white px-8 md:px-10 py-4 rounded-full font-bold transition-all w-full sm:w-auto text-lg md:text-xl flex flex-col items-center">
+                    Diagnóstico Online
+                    <span class="block text-xs font-normal mt-1 opacity-90">Gratuito (TotalPass / Wellhub)</span>
+                </button>
             </div>
         </div>
+
+        <!-- Indicador Scroll -->
+        <a href="#espaco" class="absolute bottom-8 text-white/70 hover:text-imua-gold flex flex-col items-center gap-2 transition-colors animate-bounce z-10 cursor-pointer">
+            <span class="text-xs font-bold uppercase tracking-widest">Conhecer o Studio</span>
+            <i class="fas fa-chevron-down text-xl"></i>
+        </a>
     </section>
 
     <!-- Parceiros / Benefícios -->
-    <section class="py-10 bg-white shadow-sm relative z-10 -mt-6 mx-4 md:mx-auto max-w-5xl rounded-3xl border border-gray-100">
+    <section class="py-10 bg-white shadow-sm relative z-10 mx-4 md:mx-auto max-w-5xl rounded-[2rem] border border-gray-100 -mt-10">
         <div class="px-4 text-center">
             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Aceitamos Benefícios Corporativos</p>
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80">
@@ -633,8 +610,52 @@
         </div>
     </div>
 
-    <!-- Script de Horário e Quiz -->
+    <!-- Script de Navbar Dinâmica, Horário e Quiz -->
     <script>
+        // --- EFEITO DA NAVBAR ---
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const logo = document.getElementById('nav-logo');
+            const links = [document.getElementById('nav-link-1'), document.getElementById('nav-link-2'), document.getElementById('nav-link-3'), document.getElementById('nav-link-4')];
+            const statusContainer = document.getElementById('status-container');
+            const statusText = document.getElementById('status-text');
+            
+            if (window.scrollY > 100) {
+                // ROLOU A PÁGINA (Fica Sólida e Escura)
+                navbar.classList.remove('header-transparent');
+                navbar.classList.add('header-solid');
+                logo.classList.remove('opacity-0');
+                logo.classList.add('opacity-100');
+                
+                statusContainer.classList.remove('bg-black/30', 'border-white/10');
+                statusContainer.classList.add('bg-white', 'border-gray-200', 'shadow-sm');
+                statusText.classList.remove('text-white');
+                statusText.classList.add('text-imua-dark');
+
+                links.forEach(link => {
+                    link.classList.remove('header-text-white');
+                    link.classList.add('header-text-dark');
+                });
+            } else {
+                // TOPO DA PÁGINA (Fica Transparente e Branca)
+                navbar.classList.add('header-transparent');
+                navbar.classList.remove('header-solid');
+                logo.classList.add('opacity-0');
+                logo.classList.remove('opacity-100');
+
+                statusContainer.classList.add('bg-black/30', 'border-white/10');
+                statusContainer.classList.remove('bg-white', 'border-gray-200', 'shadow-sm');
+                statusText.classList.add('text-white');
+                statusText.classList.remove('text-imua-dark');
+
+                links.forEach(link => {
+                    link.classList.add('header-text-white');
+                    link.classList.remove('header-text-dark');
+                });
+            }
+        });
+
+        // --- FUNÇÃO DE HORÁRIO DINÂMICO ---
         function checkOpenStatus() {
             const now = new Date();
             const day = now.getDay(); 
@@ -653,14 +674,15 @@
 
             if (isOpen) {
                 statusDot.className = "w-2 h-2 rounded-full bg-green-500 animate-pulse";
-                statusText.innerText = "Aberto Agora • Dentro da Academia Original";
+                statusText.innerText = "Aberto Agora";
             } else {
                 statusDot.className = "w-2 h-2 rounded-full bg-red-500";
-                statusText.innerText = "Fechado Agora • Dentro da Academia Original";
+                statusText.innerText = "Fechado Agora";
             }
         }
         document.addEventListener('DOMContentLoaded', checkOpenStatus);
 
+        // --- SCRIPTS DO QUIZ ---
         let respostas = { obj: '', rotina: '', beneficio: '' };
 
         function openQuiz() {
