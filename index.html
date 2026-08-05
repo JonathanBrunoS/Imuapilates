@@ -137,20 +137,20 @@
         </div>
     </header>
 
-    <!-- NOVO HERO SECTION (Capa Centralizada Estilo Facebook) -->
-    <section class="relative min-h-screen flex flex-col justify-center items-center pt-20 pb-8">
-        <!-- Background Imagem da Sala -->
+    <!-- HERO SECTION (Capa Centralizada com Fluxo Flexível para Mobile) -->
+    <section class="relative min-h-[100dvh] flex flex-col justify-between items-center pt-28 pb-8">
+        <!-- Background Imagem da Sala (Atualizada) -->
         <div class="absolute inset-0 z-0">
-            <img src="https://i.ibb.co/ZzQx07pq/image.png" class="w-full h-full object-cover object-center" alt="Estúdio Imua Pilates">
+            <img src="https://i.ibb.co/393BqPbm/image.png" class="w-full h-full object-cover object-center" alt="Estúdio Imua Pilates">
             <!-- Overlay escuro para dar contraste ao texto -->
-            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80"></div>
         </div>
 
-        <!-- Conteúdo Centralizado -->
-        <div class="relative z-10 flex flex-col items-center text-center px-4 w-full max-w-4xl mx-auto mt-12">
+        <!-- Conteúdo Centralizado (Agora ele preenche o espaço flexível sem sobrepor) -->
+        <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 w-full max-w-4xl mx-auto flex-grow mb-8">
             
             <!-- Logo Gigante -->
-            <img src="https://i.ibb.co/Y7n7Ncxf/Design-sem-nome.png" alt="Imua Pilates Studio" class="w-56 md:w-72 lg:w-80 mb-8 drop-shadow-2xl">
+            <img src="https://i.ibb.co/Y7n7Ncxf/Design-sem-nome.png" alt="Imua Pilates Studio" class="w-48 md:w-72 lg:w-80 mb-8 drop-shadow-2xl">
             
             <!-- Título Principal -->
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.2] mb-6 tracking-tight drop-shadow-lg">
@@ -158,42 +158,42 @@
             </h1>
             
             <!-- Subtítulo -->
-            <p class="text-lg md:text-2xl text-gray-200 mb-10 font-medium max-w-2xl drop-shadow-md">
+            <p class="text-lg md:text-2xl text-gray-200 mb-8 font-medium max-w-2xl drop-shadow-md">
                 Atendimento individualizado com <span class="text-imua-gold font-bold">fisioterapeutas especializados</span>.
             </p>
             
             <!-- Checkmarks Horizontais -->
             <div class="flex flex-col sm:flex-row gap-4 sm:gap-10 justify-center mb-12 text-white font-bold text-lg md:text-xl">
-                <span class="flex items-center gap-3 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"><i class="fas fa-check text-imua-gold"></i> Menos dores</span>
-                <span class="flex items-center gap-3 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"><i class="fas fa-check text-imua-gold"></i> Mais força</span>
-                <span class="flex items-center gap-3 bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"><i class="fas fa-check text-imua-gold"></i> Mais mobilidade</span>
+                <span class="flex items-center gap-3 bg-black/30 px-5 py-2.5 rounded-full backdrop-blur-md border border-white/10"><i class="fas fa-check text-imua-gold"></i> Menos dores</span>
+                <span class="flex items-center gap-3 bg-black/30 px-5 py-2.5 rounded-full backdrop-blur-md border border-white/10"><i class="fas fa-check text-imua-gold"></i> Mais força</span>
+                <span class="flex items-center gap-3 bg-black/30 px-5 py-2.5 rounded-full backdrop-blur-md border border-white/10"><i class="fas fa-check text-imua-gold"></i> Mais mobilidade</span>
             </div>
             
             <!-- Botões Principais -->
-            <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto justify-center">
                 <!-- Botão Next Fit -->
-                <a href="#" class="bg-imua-gold hover:bg-yellow-500 text-imua-dark px-8 md:px-12 py-4 rounded-full font-black transition-all shadow-[0_0_30px_rgba(197,160,89,0.5)] transform hover:-translate-y-1 w-full sm:w-auto text-lg md:text-xl">
+                <a href="#" class="bg-imua-gold hover:bg-yellow-500 text-imua-dark px-8 md:px-12 py-4 rounded-full font-black transition-all shadow-[0_0_30px_rgba(197,160,89,0.4)] transform hover:-translate-y-1 w-full sm:w-auto text-lg md:text-xl border border-yellow-400">
                     Agendar uma aula
                     <span class="block text-xs md:text-sm font-bold uppercase mt-1 opacity-90 tracking-wider">Experimental por R$ 89,90</span>
                 </a>
                 
                 <!-- Botão Avaliação Gratuita / Gympass -->
-                <button onclick="openQuiz()" class="bg-transparent border-2 border-white hover:bg-white hover:text-imua-dark text-white px-8 md:px-10 py-4 rounded-full font-bold transition-all w-full sm:w-auto text-lg md:text-xl flex flex-col items-center">
+                <button onclick="openQuiz()" class="bg-black/40 backdrop-blur-sm border-2 border-white hover:bg-white hover:text-imua-dark text-white px-8 md:px-10 py-4 rounded-full font-bold transition-all w-full sm:w-auto text-lg md:text-xl flex flex-col items-center">
                     Diagnóstico Online
-                    <span class="block text-xs font-normal mt-1 opacity-90">Gratuito (TotalPass / Wellhub)</span>
+                    <span class="block text-xs font-normal mt-1 opacity-90 text-imua-gold">Gratuito (TotalPass / Wellhub)</span>
                 </button>
             </div>
         </div>
 
-        <!-- Indicador Scroll -->
-        <a href="#espaco" class="absolute bottom-8 text-white/70 hover:text-imua-gold flex flex-col items-center gap-2 transition-colors animate-bounce z-10 cursor-pointer">
+        <!-- Indicador Scroll (Agora faz parte do fluxo, não sobrepõe mais nada) -->
+        <a href="#espaco" class="relative z-10 text-white/70 hover:text-imua-gold flex flex-col items-center gap-2 transition-colors animate-bounce cursor-pointer mt-auto">
             <span class="text-xs font-bold uppercase tracking-widest">Conhecer o Studio</span>
             <i class="fas fa-chevron-down text-xl"></i>
         </a>
     </section>
 
     <!-- Parceiros / Benefícios -->
-    <section class="py-10 bg-white shadow-sm relative z-10 mx-4 md:mx-auto max-w-5xl rounded-[2rem] border border-gray-100 -mt-10">
+    <section class="py-10 bg-white shadow-sm relative z-10 mx-4 md:mx-auto max-w-5xl rounded-[2rem] border border-gray-100 -mt-8">
         <div class="px-4 text-center">
             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Aceitamos Benefícios Corporativos</p>
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80">
@@ -404,7 +404,6 @@
         </div>
 
         <div class="relative flex overflow-x-hidden group bg-imua-light py-10 border-y border-gray-100">
-            <!-- Track 1 -->
             <div class="py-4 animate-marquee whitespace-nowrap flex items-center gap-6 px-3">
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 w-80 md:w-96 shrink-0 whitespace-normal">
                     <i class="fas fa-quote-left text-3xl text-imua-gold/20 mb-3"></i>
@@ -422,7 +421,6 @@
                     <p class="font-bold text-imua-dark text-sm">- Paciente Imua</p>
                 </div>
             </div>
-            <!-- Track 2 -->
             <div class="absolute top-0 py-14 animate-marquee2 whitespace-nowrap flex items-center gap-6 px-3">
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 w-80 md:w-96 shrink-0 whitespace-normal">
                     <i class="fas fa-quote-left text-3xl text-imua-gold/20 mb-3"></i>
@@ -612,7 +610,7 @@
 
     <!-- Script de Navbar Dinâmica, Horário e Quiz -->
     <script>
-        // --- EFEITO DA NAVBAR ---
+        // EFEITO DA NAVBAR
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             const logo = document.getElementById('nav-logo');
@@ -621,7 +619,6 @@
             const statusText = document.getElementById('status-text');
             
             if (window.scrollY > 100) {
-                // ROLOU A PÁGINA (Fica Sólida e Escura)
                 navbar.classList.remove('header-transparent');
                 navbar.classList.add('header-solid');
                 logo.classList.remove('opacity-0');
@@ -637,7 +634,6 @@
                     link.classList.add('header-text-dark');
                 });
             } else {
-                // TOPO DA PÁGINA (Fica Transparente e Branca)
                 navbar.classList.add('header-transparent');
                 navbar.classList.remove('header-solid');
                 logo.classList.add('opacity-0');
@@ -655,7 +651,7 @@
             }
         });
 
-        // --- FUNÇÃO DE HORÁRIO DINÂMICO ---
+        // HORÁRIO DINÂMICO
         function checkOpenStatus() {
             const now = new Date();
             const day = now.getDay(); 
@@ -682,7 +678,7 @@
         }
         document.addEventListener('DOMContentLoaded', checkOpenStatus);
 
-        // --- SCRIPTS DO QUIZ ---
+        // SCRIPTS DO QUIZ
         let respostas = { obj: '', rotina: '', beneficio: '' };
 
         function openQuiz() {
