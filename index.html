@@ -57,34 +57,48 @@
         html { scroll-behavior: smooth; }
         
         .glass-header {
-            background: rgba(248, 246, 240, 0.85);
+            background: rgba(248, 246, 240, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(197, 160, 89, 0.1);
         }
-        .blend-logo { mix-blend-mode: multiply; }
 
+        /* Fundo da primeira dobra agora é claro e luxuoso */
         .hero-bg {
-            background-color: #2C2520; 
+            background-color: #F8F6F0; 
             position: relative;
             overflow: hidden;
         }
-        .hero-bg::before {
-            content: "";
+        
+        /* Detalhe de luz de fundo */
+        .hero-glow {
             position: absolute;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 150%; height: 150%;
-            background-image: url('https://i.ibb.co/nNzPHdGv/logo.jpg');
-            background-repeat: no-repeat; background-position: center; background-size: contain;
-            filter: grayscale(100%) invert(100%) opacity(0.03); 
-            z-index: 0; pointer-events: none;
+            top: 20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(197,160,89,0.15) 0%, rgba(248,246,240,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
         }
+
         .hero-content { position: relative; z-index: 1; }
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
-        .floating { animation: float 4s ease-in-out infinite; }
+        @keyframes float-slow { 
+            0% { transform: translateY(0px); } 
+            50% { transform: translateY(-12px); } 
+            100% { transform: translateY(0px); } 
+        }
+        @keyframes float-medium { 
+            0% { transform: translateY(0px); } 
+            50% { transform: translateY(10px); } 
+            100% { transform: translateY(0px); } 
+        }
+        .anim-float-1 { animation: float-slow 6s ease-in-out infinite; }
+        .anim-float-2 { animation: float-medium 5s ease-in-out infinite; }
 
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); transform: scale(1.0); }
@@ -99,7 +113,6 @@
             background: linear-gradient(45deg, #C5A059, #FDFBF7, #C5A059); z-index: -1; opacity: 0.5;
         }
 
-        /* Esconde a setinha padrão do details no FAQ */
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
     </style>
@@ -109,47 +122,87 @@
     <!-- Header / Navbar -->
     <header class="fixed w-full top-0 z-50 glass-header transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-24">
                 <div class="flex-shrink-0 flex items-center">
-                    <img class="h-14 w-auto object-contain blend-logo" src="https://i.ibb.co/nNzPHdGv/logo.jpg" alt="Imua Pilates Studio">
+                    <!-- Quando você baixar o PNG transparente no Canva, substitua o link abaixo -->
+                    <img class="h-16 w-auto object-contain" src="https://i.ibb.co/nNzPHdGv/logo.jpg" alt="Imua Pilates Studio">
                 </div>
-                <nav class="hidden md:flex space-x-6 text-sm">
-                    <a href="#jornada" class="text-imua-dark hover:text-imua-gold font-bold transition-colors">Como Funciona</a>
-                    <a href="#diferenciais" class="text-imua-dark hover:text-imua-gold font-bold transition-colors">Diferenciais</a>
-                    <a href="#espaco" class="text-imua-dark hover:text-imua-gold font-bold transition-colors">O Espaço</a>
-                    <a href="#planos" class="text-imua-dark hover:text-imua-gold font-bold transition-colors">Planos</a>
-                    <a href="#faq" class="text-imua-dark hover:text-imua-gold font-bold transition-colors">Dúvidas</a>
+                <nav class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
+                    <a href="#jornada" class="text-gray-600 hover:text-imua-gold font-bold transition-colors">Como Funciona</a>
+                    <a href="#diferenciais" class="text-gray-600 hover:text-imua-gold font-bold transition-colors">Diferenciais</a>
+                    <a href="#espaco" class="text-gray-600 hover:text-imua-gold font-bold transition-colors">O Espaço</a>
+                    <a href="#planos" class="text-gray-600 hover:text-imua-gold font-bold transition-colors">Planos</a>
                 </nav>
                 <div class="hidden md:flex items-center">
-                    <button onclick="openQuiz()" class="bg-imua-gold hover:bg-imua-brown text-white px-6 py-2.5 rounded-full font-bold transition-all shadow-md transform hover:scale-105 flex items-center gap-2">
-                        <i class="fas fa-clipboard-list"></i> Fazer Avaliação
+                    <button onclick="openQuiz()" class="bg-imua-gold hover:bg-imua-brown text-white px-8 py-3 rounded-full font-bold transition-all shadow-md transform hover:-translate-y-1 flex items-center gap-2">
+                        <i class="fas fa-clipboard-list"></i> Iniciar Avaliação
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left hero-content w-full py-12">
-            <div class="md:w-2/3">
-                <div class="inline-block bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 rounded-full mb-6">
-                    <span class="text-imua-gold font-bold tracking-widest uppercase text-xs">Dentro da Academia Original</span>
+    <!-- NOVO HERO SECTION (Bento Grid) -->
+    <section class="hero-bg min-h-screen flex items-center pt-24 pb-12">
+        <div class="hero-glow"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-content w-full">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                
+                <!-- Lado Esquerdo: A Promessa (Copy) -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left pt-10 lg:pt-0">
+                    <div class="inline-flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-full mb-8 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-imua-dark font-bold tracking-widest uppercase text-xs">Aberto Hoje • Dentro da Academia Original</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-imua-dark leading-[1.1] mb-6 tracking-tight">
+                        Seu corpo foi <br class="hidden lg:block"> feito para o <span class="text-imua-gold">movimento livre.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-500 mb-10 font-medium leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Recupere sua mobilidade e viva sem dores com um acompanhamento premium feito exclusivamente por fisioterapeutas.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button onclick="openQuiz()" class="bg-imua-dark hover:bg-black text-white text-center px-8 py-4 rounded-full font-bold transition-all shadow-xl text-lg transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                            <i class="fas fa-bolt text-imua-gold"></i> Diagnóstico Rápido
+                        </button>
+                        <a href="#planos" class="border-2 border-gray-200 text-imua-dark hover:border-imua-gold hover:text-imua-gold text-center px-8 py-4 rounded-full font-bold transition-all text-lg bg-white">
+                            Ver Planos
+                        </a>
+                    </div>
                 </div>
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 tracking-tight">
-                    Movimento com <br class="hidden md:block"> propósito. <span class="text-transparent bg-clip-text bg-gradient-to-r from-imua-gold to-yellow-200">Cuidado com você.</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl font-light">
-                    Recupere sua mobilidade, alivie dores e ganhe força com um atendimento exclusivo realizado por fisioterapeutas no coração do Piqueri.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <button onclick="openQuiz()" class="bg-imua-gold hover:bg-yellow-500 text-imua-dark text-center px-8 py-4 rounded-full font-extrabold transition-all shadow-[0_0_20px_rgba(197,160,89,0.4)] text-lg transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                        Descubra seu Plano <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <a href="#planos" class="border border-white/30 text-white hover:bg-white/10 text-center px-8 py-4 rounded-full font-bold transition-all text-lg backdrop-blur-sm">
-                        Ver Planos
-                    </a>
+
+                <!-- Lado Direito: O Bento Grid de Fotos -->
+                <div class="w-full lg:w-1/2 relative h-[500px] sm:h-[600px] mt-8 lg:mt-0">
+                    <!-- O Grid moderno com as fotos enviadas -->
+                    <div class="absolute inset-0 grid grid-cols-2 gap-4 sm:gap-6 p-4">
+                        <!-- Imagem 1 (Sobe e Desce) -->
+                        <div class="anim-float-1 rounded-[2rem] overflow-hidden shadow-2xl h-[280px] sm:h-[340px] transform translate-y-8">
+                            <img src="https://i.ibb.co/ZzQx07pq/image.png" alt="Equipamentos Premium" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Imagem 2 (Desce e Sobe) -->
+                        <div class="anim-float-2 rounded-[2rem] overflow-hidden shadow-2xl h-[240px] sm:h-[280px]">
+                            <img src="https://i.ibb.co/393BqPbm/image.png" alt="Aparelhos de Pilates" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Imagem 3 -->
+                        <div class="anim-float-2 rounded-[2rem] overflow-hidden shadow-2xl h-[220px] sm:h-[260px] transform -translate-y-4">
+                            <img src="https://i.ibb.co/0jYNhTdW/image.png" alt="Detalhe Estúdio" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Imagem 4 -->
+                        <div class="anim-float-1 rounded-[2rem] overflow-hidden shadow-2xl h-[260px] sm:h-[320px] transform -translate-y-12">
+                            <img src="https://i.ibb.co/ycdC176t/image.png" alt="Espaço Imua" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <!-- Selo flutuante de autoridade -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-2xl flex items-center gap-3 z-10 border border-white">
+                        <div class="w-12 h-12 bg-imua-gold text-white rounded-full flex items-center justify-center text-xl">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <p class="font-black text-imua-dark leading-none">5.0 / 5.0</p>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">No Google</p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -165,7 +218,7 @@
         </div>
     </section>
 
-    <!-- NOVO: Mapa de Dores Interativo -->
+    <!-- Mapa de Dores Interativo -->
     <section id="dores" class="py-24 bg-imua-light">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -174,29 +227,26 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <!-- Card Lombar -->
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 group hover:shadow-xl hover:border-imua-gold transition-all duration-300">
                     <div class="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                         <i class="fas fa-compress-arrows-alt"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-imua-dark mb-3">Lombar e Ciático</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Focamos na descompressão da coluna e fortalecimento do "core" (centro de força) para aliviar a pressão nos discos e nervos de forma imediata.</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">Focamos na descompressão da coluna e fortalecimento do "core" para aliviar a pressão nos discos e nervos de forma imediata.</p>
                 </div>
-                <!-- Card Cervical -->
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 group hover:shadow-xl hover:border-imua-gold transition-all duration-300">
                     <div class="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                         <i class="fas fa-user-injured"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-imua-dark mb-3">Pescoço e Ombros</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Tratamos a tensão acumulada por má postura e estresse. Utilizamos liberação miofascial e exercícios focados na mobilidade da cintura escapular.</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">Tratamos a tensão acumulada por má postura e estresse. Utilizamos liberação miofascial e exercícios focados na mobilidade.</p>
                 </div>
-                <!-- Card Joelhos -->
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 group hover:shadow-xl hover:border-imua-gold transition-all duration-300">
                     <div class="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-red-500 group-hover:text-white transition-colors">
                         <i class="fas fa-walking"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-imua-dark mb-3">Joelhos e Articulações</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Ajustamos a biomecânica do seu movimento. Fortalecemos a musculatura estabilizadora para que a articulação pare de sofrer impacto e desgaste.</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">Ajustamos a biomecânica do seu movimento e fortalecemos a musculatura estabilizadora para proteger a articulação.</p>
                 </div>
             </div>
             <div class="text-center mt-12">
@@ -207,7 +257,7 @@
         </div>
     </section>
 
-    <!-- NOVO: Passo a Passo (Jornada) -->
+    <!-- Passo a Passo (Jornada) -->
     <section id="jornada" class="py-24 bg-white border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -216,33 +266,27 @@
             </div>
             
             <div class="relative max-w-5xl mx-auto">
-                <!-- Linha conectora (visível apenas em telas médias+) -->
                 <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-100 -translate-y-1/2"></div>
-                
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <!-- Passo 1 -->
-                    <div class="relative text-center z-10 bg-white p-4">
+                    <div class="relative text-center z-10 bg-white p-4 hover:-translate-y-2 transition-transform">
                         <div class="w-16 h-16 bg-imua-gold text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black shadow-lg border-4 border-white">1</div>
                         <h4 class="font-bold text-lg text-imua-dark mb-2">Diagnóstico Digital</h4>
                         <p class="text-sm text-gray-500">Faça nosso quiz no site ou nos chame no WhatsApp para identificarmos seu perfil.</p>
                     </div>
-                    <!-- Passo 2 -->
-                    <div class="relative text-center z-10 bg-white p-4">
+                    <div class="relative text-center z-10 bg-white p-4 hover:-translate-y-2 transition-transform">
                         <div class="w-16 h-16 bg-imua-dark text-imua-gold rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black shadow-lg border-4 border-white">2</div>
-                        <h4 class="font-bold text-lg text-imua-dark mb-2">Avaliação com Fisio</h4>
+                        <h4 class="font-bold text-lg text-imua-dark mb-2">Avaliação Presencial</h4>
                         <p class="text-sm text-gray-500">Agende sua primeira avaliação presencial onde mapearemos suas necessidades e dores.</p>
                     </div>
-                    <!-- Passo 3 -->
-                    <div class="relative text-center z-10 bg-white p-4">
+                    <div class="relative text-center z-10 bg-white p-4 hover:-translate-y-2 transition-transform">
                         <div class="w-16 h-16 bg-imua-dark text-imua-gold rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black shadow-lg border-4 border-white">3</div>
                         <h4 class="font-bold text-lg text-imua-dark mb-2">Plano Personalizado</h4>
                         <p class="text-sm text-gray-500">Orientamos o melhor plano (Bronze, Silver ou Gold) alinhado ao seu momento de vida.</p>
                     </div>
-                    <!-- Passo 4 -->
-                    <div class="relative text-center z-10 bg-white p-4">
-                        <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black shadow-lg border-4 border-white">4</div>
+                    <div class="relative text-center z-10 bg-white p-4 hover:-translate-y-2 transition-transform">
+                        <div class="w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-black shadow-lg border-4 border-white">4</div>
                         <h4 class="font-bold text-lg text-imua-dark mb-2">Início das Práticas</h4>
-                        <p class="text-sm text-gray-500">Comece a recuperar sua mobilidade e força com acompanhamento 100% individualizado.</p>
+                        <p class="text-sm text-gray-500">Comece a recuperar sua mobilidade e força com acompanhamento individualizado.</p>
                     </div>
                 </div>
             </div>
@@ -364,8 +408,8 @@
         </div>
     </section>
 
-    <!-- NOVO: Prova Social (Carrossel Infinito Animado) -->
-    <section class="py-24 bg-white overflow-hidden">
+    <!-- Prova Social (Carrossel Infinito Animado) -->
+    <section class="py-24 bg-white overflow-hidden border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
             <h2 class="text-3xl md:text-5xl font-black text-imua-dark mb-4 tracking-tight">O que dizem nossos alunos</h2>
             <div class="flex justify-center items-center space-x-1 text-yellow-400 text-2xl">
@@ -374,8 +418,7 @@
             <p class="text-gray-500 mt-2 font-bold">Avaliação 5 Estrelas no Google</p>
         </div>
 
-        <!-- O Carrossel Marquee -->
-        <div class="relative flex overflow-x-hidden group bg-imua-light py-8 border-y border-gray-100">
+        <div class="relative flex overflow-x-hidden group bg-imua-light py-10 border-y border-gray-100">
             <!-- Track 1 -->
             <div class="py-4 animate-marquee whitespace-nowrap flex items-center gap-6 px-3">
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 w-80 md:w-96 shrink-0 whitespace-normal">
@@ -394,8 +437,8 @@
                     <p class="font-bold text-imua-dark text-sm">- Paciente Imua</p>
                 </div>
             </div>
-            <!-- Track 2 (Clone para loop perfeito) -->
-            <div class="absolute top-0 py-12 animate-marquee2 whitespace-nowrap flex items-center gap-6 px-3">
+            <!-- Track 2 -->
+            <div class="absolute top-0 py-14 animate-marquee2 whitespace-nowrap flex items-center gap-6 px-3">
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 w-80 md:w-96 shrink-0 whitespace-normal">
                     <i class="fas fa-quote-left text-3xl text-imua-gold/20 mb-3"></i>
                     <p class="text-gray-600 font-medium italic mb-4">"Os professores são fisioterapeutas, extremamente acolhedores e atenciosos."</p>
@@ -415,7 +458,7 @@
         </div>
     </section>
 
-    <!-- NOVO: FAQ (Perguntas Frequentes) -->
+    <!-- FAQ -->
     <section id="faq" class="py-24 bg-imua-light">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -424,8 +467,7 @@
             </div>
             
             <div class="space-y-4">
-                <!-- Pergunta 1 -->
-                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 [&_summary::-webkit-details-marker]:hidden">
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100">
                     <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-imua-dark text-lg">
                         Nunca fiz Pilates, posso começar?
                         <span class="transition duration-300 group-open:-rotate-180 text-imua-gold">
@@ -436,8 +478,7 @@
                         Com certeza! Nossas aulas são personalizadas. Como somos fisioterapeutas, adaptamos todos os movimentos para o seu nível de experiência, seja você iniciante ou avançado.
                     </div>
                 </details>
-                <!-- Pergunta 2 -->
-                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 [&_summary::-webkit-details-marker]:hidden">
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100">
                     <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-imua-dark text-lg">
                         Tenho hérnia de disco. O Pilates é seguro?
                         <span class="transition duration-300 group-open:-rotate-180 text-imua-gold">
@@ -448,8 +489,7 @@
                         Sim, é um dos tratamentos mais indicados. Trabalhamos com Pilates Clínico, focado na descompressão articular e estabilização da coluna. Você treinará com total segurança.
                     </div>
                 </details>
-                <!-- Pergunta 3 -->
-                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 [&_summary::-webkit-details-marker]:hidden">
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100">
                     <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-imua-dark text-lg">
                         Como funciona o uso do Gympass/Wellhub?
                         <span class="transition duration-300 group-open:-rotate-180 text-imua-gold">
